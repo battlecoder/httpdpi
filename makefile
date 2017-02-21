@@ -9,7 +9,7 @@ OBJS = $(patsubst %,$(OBJDIR)/%,$(_OBJS))
 EXE = example
 
 $(EXE):	$(OBJS)
-	g++  $(CFLAGS) -Wl,$(LFLAGS) -o $(EXE) $(OBJS)
+	$(CC) $(CFLAGS) -Wl,$(LFLAGS) -o $(EXE) $(OBJS)
 
 $(OBJDIR)/%.o: %.c 
 	$(CC) -c -o $@ $< $(CFLAGS) 
