@@ -152,7 +152,8 @@ void httpRaiseError (httpd_conn *conn_data, HTTPD_ERROR err) {
   if (!conn_data) return;
   if (conn_data->errHandler) conn_data->errHandler (conn_data->socket, err);
   close (conn_data->socket);
-  free ((void *)conn_data);
+  /* Deallocate connection data unless it's our root socket */
+  if (conn_data != & HTTPConn) free ((void *)conn_data);
 }
 
 
